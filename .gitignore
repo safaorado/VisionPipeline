@@ -1,0 +1,29 @@
+# Environment Variables (CRITICAL)
+.env
+
+# Python / Backend
+venv/
+myenv/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# AI Model Weights
+*.pt
+*.onnx
+
+# Node.js / Frontend
+node_modules/
+dist/
+build/
+npm-debug.log*
+vite.config.js.timestamp-*
+
+# OS Generated Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
