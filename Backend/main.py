@@ -9,12 +9,16 @@ import os
 from dotenv import load_dotenv
 from collections import defaultdict
 
-# Load variables from .env file
+
 load_dotenv()
 
 app = FastAPI(title="Local YOLO-VLM Gateway")
 
+<<<<<<< HEAD
 #CORS Configuration
+=======
+#CORS Configuration 
+>>>>>>> 6e34c8cd97086107ee003c950e5ace7d42e57eee
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173"], 
@@ -23,7 +27,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+<<<<<<< HEAD
 # Security Configuration
+=======
+#Security Configuration
+>>>>>>> 6e34c8cd97086107ee003c950e5ace7d42e57eee
 API_KEY_NAME = "X-API-Key"
 SECRET_API_KEY = os.getenv("GATEWAY_API_KEY")
 api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=False)
@@ -78,7 +86,11 @@ async def analyze_image(file: UploadFile = File(...)):
                 "action": mock_action
             })
             
+<<<<<<< HEAD
         #Generate the Overall Explanation
+=======
+        # Generate the Overall Explanation
+>>>>>>> 6e34c8cd97086107ee003c950e5ace7d42e57eee
         if not detected_objects_summary:
             overall_explanation = "No recognizable objects were detected in this image."
         else:
