@@ -25,7 +25,7 @@ app.add_middleware(
 
 #Security Configuration
 API_KEY_NAME = "X-API-Key"
-SECRET_API_KEY = os.getenv("GATEWAY_API_KEY", "my_super_secret_key_123")
+SECRET_API_KEY = os.getenv("GATEWAY_API_KEY")
 api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=False)
 
 async def get_api_key(api_key_header: str = Security(api_key_header)):
