@@ -9,12 +9,12 @@ import os
 from dotenv import load_dotenv
 from collections import defaultdict
 
-# Load variables from .env file
+
 load_dotenv()
 
 app = FastAPI(title="Local YOLO-VLM Gateway")
 
-# --- CORS Configuration ---
+#CORS Configuration 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173"], 
@@ -23,7 +23,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# --- Security Configuration ---
+#Security Configuration
 API_KEY_NAME = "X-API-Key"
 SECRET_API_KEY = os.getenv("GATEWAY_API_KEY", "my_super_secret_key_123")
 api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=False)
@@ -36,11 +36,11 @@ async def get_api_key(api_key_header: str = Security(api_key_header)):
         detail="Missing or invalid API key"
     )
 
-# --- Load Optimized YOLO Model ---
+# Load Optimized YOLO Model
 print("Loading hardware-accelerated YOLOv11 Nano ONNX model...")
 yolo_model = YOLO("yolo11n.onnx") 
 
-# --- Main API Endpoint ---
+#Main API Endpoint
 @app.post("/api/analyze", dependencies=[Depends(get_api_key)])
 async def analyze_image(file: UploadFile = File(...)):
     try:
@@ -78,7 +78,7 @@ async def analyze_image(file: UploadFile = File(...)):
                 "action": mock_action
             })
             
-        # --- Generate the Overall Explanation ---
+        # Generate the Overall Explanation
         if not detected_objects_summary:
             overall_explanation = "No recognizable objects were detected in this image."
         else:
