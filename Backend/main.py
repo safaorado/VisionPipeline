@@ -9,7 +9,6 @@ import os
 from dotenv import load_dotenv
 from collections import defaultdict
 
-
 load_dotenv()
 
 app = FastAPI(title="Local YOLO-VLM Gateway")
@@ -17,7 +16,7 @@ app = FastAPI(title="Local YOLO-VLM Gateway")
 #CORS Configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"], 
+    allow_origins=["*"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
