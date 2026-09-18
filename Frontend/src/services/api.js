@@ -1,16 +1,18 @@
 import axios from 'axios';
 
-// Ensure this matches the GATEWAY_API_KEY in your backend .env file
-const API_KEY = "fe0d768ec2cc69b27e24b14fa99ec5e14123378a54d46984e310fd44990cffae"; 
+// Inject values securely using Vite environment variables
+// Fallback to localhost only if the environment variable is missing during local testing
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
+const API_KEY = import.meta.env.VITE_GATEWAY_API_KEY; 
 
 const apiClient = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL: API_URL,
   headers: {
     'X-API-Key': API_KEY,
   },
 });
 
 export const analyzeImage = (formData) => {
-  // We don't set Content-Type manually; Axios handles the multipart boundary automatically
+  // Axios handles the multipart boundary automatically for formData
   return apiClient.post('/analyze', formData);
 };
